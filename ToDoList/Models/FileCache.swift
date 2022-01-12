@@ -9,7 +9,15 @@ import Foundation
 
 class FileCache {
 
-    var storage = [String: ToDoItem]()
+    private var storage = [String: ToDoItem]()
+
+    init() {
+        loadFromFiles()
+    }
+
+    func getStorage() -> [ToDoItem] {
+        return Array(storage.values)
+    }
 
     func addItem(_ item: ToDoItem) {
         storage[item.id] = item

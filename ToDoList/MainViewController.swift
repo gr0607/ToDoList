@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var storage = [String: ToDoItem]()
+    var itemsViewModel = ItemsViewModel()
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,8 +17,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         let fileCahe = FileCache()
-        fileCahe.load()
-        storage = fileCahe.storage
+        fileCahe.loadFromFiles()
+       // storage = fileCahe.storage
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,13 +31,13 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storage.count
+        return itemsViewModel.getItemsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var test = Array(storage.values)
-        cell.textLabel?.text = test[indexPath.row].text
+        let item = itemsViewModel.getItemByIndexPath(indexPath)
+        cell.textLabel?.text = item.text
 
         return cell
     }
