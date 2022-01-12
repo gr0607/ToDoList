@@ -7,8 +7,19 @@
 
 import Foundation
 
-enum Priority: String {
+enum Priority: String, CaseIterable {
     case hide, meduim, low
+
+    var textFileName: String {
+        switch self {
+        case .hide:
+            return "hide.txt"
+        case .meduim:
+            return "medium.txt"
+        case .low:
+            return "low.txt"
+        }
+    }
 }
 
 struct K {
