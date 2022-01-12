@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum Priority: String {
-    case hide, meduim, low
-}
-
 struct ToDoItem {
     let id: String
     let text: String
@@ -32,21 +28,23 @@ struct ToDoItem {
 extension ToDoItem {
     var json: Any {
         var dictionary = [String: Any]()
-        dictionary["id"] = self.id
-        dictionary["text"] = self.text
+        dictionary[K.id] = self.id
+        dictionary[K.text] = self.text
 
         switch priority {
         case .hide, .low:
-                dictionary["priority"] = self.priority.rawValue
+            dictionary[K.priority] = self.priority.rawValue
         case .meduim:
                 break
             }
-        
+
         if let deadLine = deadLine {
-            dictionary["deadLine"] = Double(deadLine.timeIntervalSince1970)
+            dictionary[K.deadLine] = Double(deadLine.timeIntervalSince1970)
         }
 
-        return dictionary
+        let jsonData = try? JSONSerialization.data(withJSONObject: dictionary, options: [])
+
+        return jsonData as Any
     }
 
     static func parse(json: Any) -> ToDoItem? {
@@ -55,8 +53,8 @@ extension ToDoItem {
                 return nil
                 }
 
-        guard let id = json["id"] as? String,
-              let text = json["text"] as? String
+        guard let id = json[K.id] as? String,
+              let text = json[K.text] as? String
                 else {
             return nil
         }
@@ -64,11 +62,11 @@ extension ToDoItem {
         var myDate: Date?
         var priority: Priority?
 
-        if let date = json["deadLine"] as? Double {
+        if let date = json[K.deadLine] as? Double {
             myDate = Date(timeIntervalSince1970: TimeInterval(date))
         }
 
-        if let priorityRawValue = json["priority"] as? String {
+        if let priorityRawValue = json[K.priority] as? String {
             priority = Priority(rawValue: priorityRawValue)
         }
 
