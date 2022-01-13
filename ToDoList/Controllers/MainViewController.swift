@@ -12,14 +12,10 @@ class MainViewController: UIViewController {
     var itemsViewModel = ItemsViewModel()
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let fileCahe = FileCache()
-        fileCahe.loadFromFiles()
-       // storage = fileCahe.storage
-
+        tableView.register(UINib(nibName: MyCell.id, bundle: nil), forCellReuseIdentifier: MyCell.id)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -35,9 +31,13 @@ extension MainViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyCell.id, for: indexPath) as? MyCell else {
+            return UITableViewCell()
+        }
+
         let item = itemsViewModel.getItemByIndexPath(indexPath)
-        cell.textLabel?.text = item.text
+        let cellViewModel = itemsViewModel.getCellViewModelByItem(item)
+        cell.configureWithCellViewMode(cellViewModel)
 
         return cell
     }

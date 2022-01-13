@@ -23,4 +23,8 @@ class ItemsViewModel {
     func getItemByIndexPath(_ indexPath: IndexPath) -> ToDoItem {
         return items[indexPath.row]
     }
+
+    func getCellViewModelByItem(_ item: ToDoItem) -> CellViewModel {
+        return CellViewModel(item: item)
+    }
 }
