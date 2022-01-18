@@ -18,7 +18,13 @@ class MainViewController: UIViewController {
         tableView.register(UINib(nibName: MyCell.id, bundle: nil), forCellReuseIdentifier: MyCell.id)
         tableView.delegate = self
         tableView.dataSource = self
+
     }
+
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "detailSegue", sender: nil)
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate {

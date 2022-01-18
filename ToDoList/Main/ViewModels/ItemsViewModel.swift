@@ -12,9 +12,12 @@ class ItemsViewModel {
     let fileCache: FileCache
 
     init() {
-        self.fileCache = FileCache()
+        self.fileCache = FileCache.shared
         self.items = fileCache.getStorage()
-    }
+        for item in items {
+            print(item)
+        }
+        }
 
     func getItemsCount() -> Int {
         return items.count
