@@ -45,11 +45,28 @@
                     <connections>
                         <outlet property="tableView" destination="qdF-Fu-t9y" id="yJ2-Qd-M6E"/>
                         <segue destination="tgr-at-X3J" kind="show" identifier="detailSegue" id="lNh-xs-gFa"/>
+                        <segue destination="eWh-4D-mGQ" kind="show" identifier="test" id="N3M-xO-MTs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1026.0869565217392" y="81.696428571428569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zp5-cp-Dgy">
+            <objects>
+                <viewController id="eWh-4D-mGQ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jTy-ce-NdM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uNd-3y-Ojk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2O4-LW-ii9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9V-Ck-j7v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1610" y="837"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ovi-aC-03g">
@@ -72,7 +89,7 @@
         <!--Item-->
         <scene sceneID="0lU-5E-EOQ">
             <objects>
-                <viewController id="tgr-at-X3J" customClass="DetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tgr-at-X3J" customClass="DetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3x9-Q0-vyT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,12 +118,30 @@
                                     </segmentedControl>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RP-LU-ZYj">
-                                <rect key="frame" x="20" y="274" width="374" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RP-LU-ZYj">
+                                <rect key="frame" x="20" y="727" width="374" height="127"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="127" id="lXs-Br-aka"/>
+                                </constraints>
                                 <state key="normal" title="Remove">
                                     <color key="titleColor" red="0.90980392160000001" green="0.27058823529999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="tgr-at-X3J" eventType="touchUpInside" id="ptZ-dJ-5pC"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeadLine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj4-Ra-eze">
+                                <rect key="frame" x="20" y="253" width="72" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qk4-Z5-2oX">
+                                <rect key="frame" x="345" y="253" width="51" height="31"/>
+                            </switch>
+                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="V1H-gm-LTu">
+                                <rect key="frame" x="12" y="334" width="391" height="352"/>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qg4-Aa-dsa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -114,29 +149,44 @@
                             <constraint firstItem="Xb1-mZ-WFq" firstAttribute="leading" secondItem="qg4-Aa-dsa" secondAttribute="leading" constant="20" id="23n-uD-fIg"/>
                             <constraint firstItem="qg4-Aa-dsa" firstAttribute="trailing" secondItem="jdl-2D-ub5" secondAttribute="trailing" constant="20" id="3dY-za-Gj0"/>
                             <constraint firstItem="jdl-2D-ub5" firstAttribute="leading" secondItem="qg4-Aa-dsa" secondAttribute="leading" constant="20" id="4bQ-ad-O8g"/>
+                            <constraint firstItem="Qj4-Ra-eze" firstAttribute="top" secondItem="Xb1-mZ-WFq" secondAttribute="bottom" constant="40" id="6HZ-id-wsn"/>
                             <constraint firstItem="jdl-2D-ub5" firstAttribute="top" secondItem="qg4-Aa-dsa" secondAttribute="top" constant="20" id="DQM-1F-ckj"/>
-                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="leading" secondItem="qg4-Aa-dsa" secondAttribute="leading" constant="20" id="IY9-nl-jC0"/>
-                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="top" secondItem="Xb1-mZ-WFq" secondAttribute="bottom" constant="61" id="cl5-0P-zdu"/>
+                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="trailing" secondItem="Qk4-Z5-2oX" secondAttribute="trailing" id="HHT-B2-lJX"/>
+                            <constraint firstItem="Qk4-Z5-2oX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qj4-Ra-eze" secondAttribute="trailing" constant="8" symbolic="YES" id="KSo-WK-0Ht"/>
+                            <constraint firstItem="qg4-Aa-dsa" firstAttribute="bottom" secondItem="5RP-LU-ZYj" secondAttribute="bottom" constant="8" id="L8S-jm-ujD"/>
+                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="top" secondItem="V1H-gm-LTu" secondAttribute="bottom" constant="41" id="WG4-OY-s4N"/>
+                            <constraint firstItem="Qj4-Ra-eze" firstAttribute="leading" secondItem="qg4-Aa-dsa" secondAttribute="leading" constant="20" id="Xnc-Uq-3q9"/>
+                            <constraint firstItem="qg4-Aa-dsa" firstAttribute="trailing" secondItem="Qk4-Z5-2oX" secondAttribute="trailing" constant="20" id="ZGD-Ic-R2m"/>
+                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="leading" secondItem="Qj4-Ra-eze" secondAttribute="leading" id="Zyw-ul-cpr"/>
+                            <constraint firstItem="Qk4-Z5-2oX" firstAttribute="top" secondItem="Xb1-mZ-WFq" secondAttribute="bottom" constant="40" id="blM-01-KAN"/>
+                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="leading" secondItem="V1H-gm-LTu" secondAttribute="leading" constant="8" id="d9l-Bw-Y2a"/>
                             <constraint firstItem="qg4-Aa-dsa" firstAttribute="trailing" secondItem="Xb1-mZ-WFq" secondAttribute="trailing" constant="20" id="qwY-Yj-nar"/>
-                            <constraint firstItem="qg4-Aa-dsa" firstAttribute="trailing" secondItem="5RP-LU-ZYj" secondAttribute="trailing" constant="20" id="sNS-7y-xLm"/>
+                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="leading" secondItem="Xb1-mZ-WFq" secondAttribute="leading" id="rO7-Dc-8ij"/>
                             <constraint firstItem="Xb1-mZ-WFq" firstAttribute="top" secondItem="jdl-2D-ub5" secondAttribute="bottom" constant="40" id="szt-1H-ItX"/>
+                            <constraint firstItem="5RP-LU-ZYj" firstAttribute="trailing" secondItem="Xb1-mZ-WFq" secondAttribute="trailing" id="ucn-CX-G11"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="Qpt-L8-10o">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="S93-gv-cDF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6rL-7N-ZAR">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" restorationIdentifier="De" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6rL-7N-ZAR">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="tgr-at-X3J" eventType="touchUpInside" id="if4-qC-oau"/>
+                                </connections>
                             </button>
                             <connections>
-                                <action selector="saveButtonTapped:" destination="tgr-at-X3J" id="ave-0d-thv"/>
+                                <action selector="saveButtonTapped:" destination="tgr-at-X3J" id="evt-D7-guN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deadLineDatePicker" destination="V1H-gm-LTu" id="H2m-wK-cne"/>
+                        <outlet property="deadLineSwitch" destination="Qk4-Z5-2oX" id="jVq-1w-fHw"/>
                         <outlet property="itemTextField" destination="jdl-2D-ub5" id="emV-as-gVS"/>
                         <outlet property="prioritySegmentedControl" destination="hqT-sN-bfD" id="KxX-aZ-LQj"/>
+                        <outlet property="removeButton" destination="5RP-LU-ZYj" id="wn4-2v-RDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9W-f0-vA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

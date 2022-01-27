@@ -53,9 +53,11 @@ class CellViewModel {
             return nil
         }
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-dd-m"
+        formatter.dateFormat = "dd.MM.yy"
 
-        return formatter.string(from: date)
+        let dateString = formatter.string(from: date)
+
+        return "DeadLine: \(dateString)"
     }
 }
 

@@ -21,6 +21,11 @@ class FileCache {
         return Array(storage.values)
     }
 
+
+    func removeAll() {
+        storage.removeAll()
+    }
+
     func addItem(_ item: ToDoItem) {
         storage[item.id] = item
     }
@@ -29,12 +34,12 @@ class FileCache {
         storage[id] = nil
     }
 
-    func writeStorageToFiles() {
+    func writeStorageToFiles(_ items: [ToDoItem]) {
         var medium = [ToDoItem]()
         var hide = [ToDoItem]()
         var low = [ToDoItem]()
 
-        for item in storage.values {
+        for item in items {
             switch item.priority {
             case .hide:
                 hide.append(item)
@@ -56,11 +61,15 @@ class FileCache {
 
             for item in items {
                 data.append((item.json as? Data)!)
-                var str = "\n"
+                let str = "\n"
                 data.append(str.data(using: .utf8)!)
             }
 
-            try data.write(to: fileName, options: [.atomicWrite])
+
+                try data.write(to: fileName, options: [.atomicWrite])
+
+            
+
 
         } catch {
             print(error)
@@ -88,8 +97,6 @@ class FileCache {
             for item in items {
                 storage[item.id] = item
             }
-
-
 
         } catch {
             print(error)
